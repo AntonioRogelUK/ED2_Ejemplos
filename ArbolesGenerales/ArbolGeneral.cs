@@ -38,5 +38,35 @@ namespace ArbolesGenerales
                 return hijoNodoPadre.Hermano;
             }
         }
+
+        public string ObtenerArbol(Nodo nodo = null)
+        {
+            nodo ??= this.raiz;
+            int posicion = 0;
+            string datos = string.Empty;
+
+            Recorrer(nodo, ref posicion, ref datos);
+            return datos;
+        }
+
+        private void Recorrer(Nodo nodo, ref int posicion, ref string datos)
+        {
+            if (nodo != null)
+            {
+                datos += $"{nodo.Dato.PadLeft(nodo.Dato.Length + posicion,'-')}\n";
+
+                if (nodo.Hijo != null)
+                {
+                    posicion++;
+                    Recorrer(nodo.Hijo, ref posicion, ref datos);
+                    posicion--;
+                }
+
+                if (nodo.Hermano != null)
+                {
+                    Recorrer(nodo.Hermano, ref posicion, ref datos);
+                }
+            }
+        }
     }
 }
