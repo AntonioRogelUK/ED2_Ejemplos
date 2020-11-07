@@ -68,5 +68,35 @@ namespace ArbolesGenerales
                 }
             }
         }
+
+        public Nodo Buscar(string dato, Nodo nodoBusqueda = null) 
+        {
+            nodoBusqueda ??= this.raiz;
+
+            if (nodoBusqueda.Dato.ToUpper() == dato.ToUpper()) 
+            {
+                return nodoBusqueda;
+            }
+
+            if (nodoBusqueda.Hijo != null) 
+            {
+                Nodo nodoEncontrado = Buscar(dato, nodoBusqueda.Hijo);
+                if (nodoEncontrado != null) 
+                {
+                    return nodoEncontrado;
+                }
+            }
+
+            if (nodoBusqueda.Hermano != null) 
+            {
+                Nodo nodoEncontrado = Buscar(dato, nodoBusqueda.Hermano);
+                if (nodoEncontrado != null)
+                {
+                    return nodoEncontrado;
+                }
+            }
+
+            return null;
+        }
     }
 }

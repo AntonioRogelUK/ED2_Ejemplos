@@ -23,6 +23,9 @@ namespace ArbolesGenerales
 
             Console.WriteLine(arbol.ObtenerArbol());
 
+            Nodo nodoEncontrado = arbol.Buscar("F");
+            Console.WriteLine(arbol.ObtenerArbol(nodoEncontrado));
+            Console.WriteLine(nodoEncontrado.Dato);
         }
     }
 }
